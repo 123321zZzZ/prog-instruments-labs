@@ -81,7 +81,9 @@ def encrypt_symmetric_key(key: bytes, public_key: rsa.RSAPublicKey) -> bytes:
     )
 
 
-def decrypt_symmetric_key(encrypted_key: bytes, private_key: rsa.RSAPrivateKey) -> bytes:
+def decrypt_symmetric_key(
+    encrypted_key: bytes, private_key: rsa.RSAPrivateKey
+) -> bytes:
     """
     Расшифровывает симметричный ключ закрытым RSA-ключом.
 

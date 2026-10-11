@@ -8,7 +8,12 @@ from asymmetric_crypto import (
     save_private_key,
     save_public_key,
 )
-from file_utils import read_binary_file, read_json_file, write_binary_file, write_json_file
+from file_utils import (
+    read_binary_file,
+    read_json_file,
+    write_binary_file,
+    write_json_file,
+)
 from symmetric_crypto import (
     decrypt_file_camellia,
     encrypt_file_camellia,
@@ -132,7 +137,9 @@ def main() -> None:
     parser.add_argument("--private-key", dest="private_key")
     parser.add_argument("--public-key", dest="public_key")
     parser.add_argument("--symmetric-key", dest="symmetric_key")
-    parser.add_argument("--key-size", dest="key_size", type=int, choices=(128, 192, 256))
+    parser.add_argument(
+        "--key-size", dest="key_size", type=int, choices=(128, 192, 256)
+    )
 
     args = parser.parse_args()
 

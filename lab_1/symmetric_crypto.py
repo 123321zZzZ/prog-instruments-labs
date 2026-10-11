@@ -19,7 +19,9 @@ def generate_symmetric_key(key_size: int) -> bytes:
     return os.urandom(key_size // 8)
 
 
-def encrypt_file_camellia(input_file_path: str, output_file_path: str, key: bytes) -> None:
+def encrypt_file_camellia(
+    input_file_path: str, output_file_path: str, key: bytes
+) -> None:
     """
     Шифрует файл алгоритмом Camellia-CBC.
 
@@ -42,7 +44,9 @@ def encrypt_file_camellia(input_file_path: str, output_file_path: str, key: byte
     write_binary_file(output_file_path, iv + ciphertext)
 
 
-def decrypt_file_camellia(input_file_path: str, output_file_path: str, key: bytes) -> None:
+def decrypt_file_camellia(
+    input_file_path: str, output_file_path: str, key: bytes
+) -> None:
     """
     Дешифрует файл алгоритмом Camellia-CBC.
 

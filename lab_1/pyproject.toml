@@ -1,0 +1,55 @@
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+extend-exclude = [".venv"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort: import order
+    "N",    # pep8-naming
+    "D",    # pydocstyle: docstrings
+    "UP",   # pyupgrade: modern syntax
+    "ANN",  # flake8-annotations: type hints everywhere
+    "B",    # flake8-bugbear: likely bugs
+    "A",    # flake8-builtins: shadowing builtins
+    "S",    # flake8-bandit: security
+    "C4",   # flake8-comprehensions
+    "C90",  # mccabe: cyclomatic complexity
+    "SIM",  # flake8-simplify
+    "RET",  # flake8-return
+    "PIE",  # flake8-pie
+    "PTH",  # flake8-use-pathlib
+    "ERA",  # eradicate: commented-out code
+    "PL",   # pylint
+    "RUF",  # ruff-specific rules
+]
+ignore = [
+    # User messages and docstrings are in Russian: Cyrillic letters such as
+    # "с", "у", "Н" are reported as confusable with Latin ones.
+    "RUF001",
+    "RUF002",
+    "RUF003",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+docstring-code-format = true
+
+[tool.pyright]
+include = ["."]
+exclude = [".venv", "**/__pycache__"]
+pythonVersion = "3.12"
+typeCheckingMode = "strict"
+venvPath = "."
+venv = ".venv"

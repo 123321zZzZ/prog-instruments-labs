@@ -1,3 +1,5 @@
+"""Консольный интерфейс гибридной криптосистемы RSA + Camellia."""
+
 import argparse
 
 from asymmetric_crypto import (
@@ -124,9 +126,7 @@ def decryption_mode(settings: dict) -> None:
 
 
 def main() -> None:
-    """
-    Запускает выбранный режим программы.
-    """
+    """Запускает выбранный режим программы."""
     parser = argparse.ArgumentParser()
 
     group = parser.add_mutually_exclusive_group(required=True)

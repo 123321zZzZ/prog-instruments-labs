@@ -1,3 +1,5 @@
+"""Симметричная часть криптосистемы: шифрование файлов алгоритмом Camellia-CBC."""
+
 import os
 
 from cryptography.hazmat.primitives import padding as symmetric_padding

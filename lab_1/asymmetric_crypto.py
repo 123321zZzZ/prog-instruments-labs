@@ -1,3 +1,5 @@
+"""Асимметричная часть криптосистемы: ключи RSA и шифрование ими ключа Camellia."""
+
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding as asymmetric_padding
 from cryptography.hazmat.primitives.asymmetric import rsa

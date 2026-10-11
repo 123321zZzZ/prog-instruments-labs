@@ -2,9 +2,10 @@
 
 import json
 from pathlib import Path
+from typing import Any
 
 
-def read_json_file(file_path: str) -> dict:
+def read_json_file(file_path: str) -> dict[str, Any]:
     """
     Читает JSON-файл.
 
@@ -20,7 +21,7 @@ def read_json_file(file_path: str) -> dict:
         raise ValueError(f"Ошибка чтения JSON-файла: {file_path}") from error
 
 
-def write_json_file(file_path: str, data: dict) -> None:
+def write_json_file(file_path: str, data: dict[str, Any]) -> None:
     """
     Записывает словарь в JSON-файл.
 

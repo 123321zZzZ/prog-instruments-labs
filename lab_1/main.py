@@ -1,6 +1,7 @@
 """Консольный интерфейс гибридной криптосистемы RSA + Camellia."""
 
 import argparse
+from typing import Any
 
 from asymmetric_crypto import (
     decrypt_symmetric_key,
@@ -23,7 +24,7 @@ from symmetric_crypto import (
 )
 
 
-def request_settings(settings: dict) -> dict:
+def request_settings(settings: dict[str, Any]) -> dict[str, Any]:
     """
     Запрашивает у пользователя пути к ключам и обновляет настройки.
 
@@ -45,7 +46,7 @@ def request_settings(settings: dict) -> dict:
     return settings
 
 
-def generation_mode(settings: dict) -> None:
+def generation_mode(settings: dict[str, Any]) -> None:
     """
     Генерирует ключи гибридной криптосистемы.
 
@@ -73,7 +74,7 @@ def generation_mode(settings: dict) -> None:
     print("Генерация завершена")
 
 
-def encryption_mode(settings: dict) -> None:
+def encryption_mode(settings: dict[str, Any]) -> None:
     """
     Шифрует файл гибридной криптосистемой.
 
@@ -99,7 +100,7 @@ def encryption_mode(settings: dict) -> None:
     print("Шифрование завершено")
 
 
-def decryption_mode(settings: dict) -> None:
+def decryption_mode(settings: dict[str, Any]) -> None:
     """
     Дешифрует файл гибридной криптосистемой.
 
@@ -174,7 +175,9 @@ def main() -> None:
             case (False, False, True):
                 print("Режим дешифрования")
                 decryption_mode(settings)
-    except (FileNotFoundError, OSError, ValueError) as error:
+            case _:
+                parser.error("нужно выбрать ровно один режим: --gen, --enc или --dec")
+    except (FileNotFoundError, OSError, ValueError, TypeError) as error:
         print(f"Ошибка: {error}")
 
 

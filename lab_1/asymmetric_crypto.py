@@ -60,9 +60,14 @@ def load_private_key(private_key_path: str) -> rsa.RSAPrivateKey:
     """
     try:
         key_data = read_binary_file(private_key_path)
-        return load_pem_private_key(key_data, password=None)
+        private_key = load_pem_private_key(key_data, password=None)
     except ValueError as error:
         raise ValueError("Не удалось прочитать закрытый RSA-ключ.") from error
+
+    if not isinstance(private_key, rsa.RSAPrivateKey):
+        raise TypeError(f"Ключ в файле {private_key_path} не является ключом RSA.")
+
+    return private_key
 
 
 def encrypt_symmetric_key(key: bytes, public_key: rsa.RSAPublicKey) -> bytes:

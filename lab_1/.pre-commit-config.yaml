@@ -1,0 +1,37 @@
+# Git-хуки ЛР1. Конфиг лежит в lab_1/, поэтому хуки устанавливаются командой
+# `make precommit` из этой папки, а проверяются только файлы внутри lab_1/.
+default_install_hook_types: [pre-commit, pre-push]
+default_stages: [pre-commit]
+files: ^lab_1/
+
+repos:
+  # Перед коммитом: базовые проверки файлов
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+      - id: detect-private-key
+
+  # Перед коммитом: линтер с автоисправлением и форматтер
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.0
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  # Перед push: полная проверка (ruff + проверка форматирования + pyright)
+  - repo: local
+    hooks:
+      - id: fullcheck
+        name: make fullcheck (ruff + pyright)
+        entry: make -C lab_1 fullcheck
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
